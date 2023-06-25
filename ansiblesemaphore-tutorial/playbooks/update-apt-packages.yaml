@@ -1,9 +1,8 @@
 ---
 - hosts: all
-
-  become: true
+  user: root
   tasks:
-    - name: update apt packages
-      dnf:
-        upgrade: yes
-        update_cache: yes
+  - name: upgrade all packages
+    raw: /usr/bin/dnf -y upgrade
+  - name: reboot system
+    raw: /usr/sbin/reboot
